@@ -3,9 +3,9 @@ import VueRouter from 'vue-router'
 
 import './public-path'
 import App from './App.vue'
-import { routes } from './routes'
+import { routes, beforeEach, beforeResolve, afterEach, onError, onReady } from './routes'
 import store from './store'
-const MICRO_NAME = 'MICRO_APP_CRM'
+const MICRO_NAME = 'MicroAppCrm'
 
 Vue.use(VueRouter)
 
@@ -23,17 +23,19 @@ let router = null
  * 渲染函数
  * 两种情况：主应用生命周期钩子中运行 / 微应用单独启动时运行
  */
-function render () {
+function render (porps) {
   // 在 render 中创建 VueRouter，可以保证在卸载微应用时，移除 location 事件监听，防止事件污染
   router = new VueRouter({
     // 运行在主应用中时，添加路由命名空间 /vue
-    base: window.__POWERED_BY_QIANKUN__ ? '/' : '/',
+    base: window.__POWERED_BY_QIANKUN__ ? '/crm' : '/',
     mode: 'history',
     routes
   })
-  router.onError = (err) => {
-    throw new Error(err)
-  }
+  router.beforeEach = beforeEach
+  router.beforeResolve = beforeResolve
+  router.afterEach = afterEach
+  router.onReady = onReady
+  router.onError = onError
   // 挂载应用
   instance = new Vue({
     router,
