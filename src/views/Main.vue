@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      i am crm app Main
+      i am crm app Main   FUCK!
     </div>
     <div v-for="(item) in menus" :key="item.k">
       <router-link :to="item.route">
