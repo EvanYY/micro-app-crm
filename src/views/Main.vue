@@ -3,7 +3,7 @@
     <div>
       i am crm app Main   FUCK!
     </div>
-    <div v-for="(item) in menus" :key="item.k">
+    <div v-for="(item) in menus" :key="item.key">
       <router-link :to="item.route">
         {{item.title}}
       </router-link>
