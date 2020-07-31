@@ -1,20 +1,17 @@
 <template>
-   <div id="micro-app-crm">
-     <router-view :key="(new Date()).getTime()" />
-   </div>
+  <div id="micro-app-crm">
+    <h1>micro-app-crm</h1>
+    <router-view :key="(new Date()).getTime()" />
+  </div>
 </template>
 
 <script>
 export default {
-  components: {
-  },
+  components: {},
   data () {
-    return {
-
-    }
+    return {}
   }
 }
 </script>
 <style lang="scss" scoped>
-
 </style>

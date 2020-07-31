@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import './public-path'
 import App from './App.vue'
+// eslint-disable-next-line no-unused-vars
 import { routes, beforeEach, beforeResolve, afterEach, onError, onReady } from './routes'
 import store from './store'
 const MICRO_NAME = 'MicroAppCrm'
@@ -31,11 +32,11 @@ function render (porps) {
     mode: 'history',
     routes
   })
-  // router.beforeEach = beforeEach
-  // router.beforeResolve = beforeResolve
-  // router.afterEach = afterEach
-  // router.onReady = onReady
-  // router.onError = onError
+  router.beforeEach = beforeEach
+  router.beforeResolve = beforeResolve
+  router.afterEach = afterEach
+  router.onReady = onReady
+  router.onError = onError
   // 挂载应用
   instance = new Vue({
     router,
