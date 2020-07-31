@@ -31,11 +31,11 @@ function render (porps) {
     mode: 'history',
     routes
   })
-  router.beforeEach = beforeEach
-  router.beforeResolve = beforeResolve
-  router.afterEach = afterEach
-  router.onReady = onReady
-  router.onError = onError
+  // router.beforeEach = beforeEach
+  // router.beforeResolve = beforeResolve
+  // router.afterEach = afterEach
+  // router.onReady = onReady
+  // router.onError = onError
   // 挂载应用
   instance = new Vue({
     router,
