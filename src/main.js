@@ -6,6 +6,8 @@ import App from './App.vue'
 // eslint-disable-next-line no-unused-vars
 import { routes, beforeEach, beforeResolve, afterEach, onError, onReady } from './routes'
 import store from './store'
+import SharedModule from '@/shared'
+
 const MICRO_NAME = 'MicroAppCrm'
 
 Vue.use(VueRouter)
@@ -24,7 +26,12 @@ let router = null
  * 渲染函数
  * 两种情况：主应用生命周期钩子中运行 / 微应用单独启动时运行
  */
-function render (porps) {
+function render (props) {
+  // 当传入的 shared 为空时，使用子应用自身的 shared
+  // 当传入的 shared 不为空时，主应用传入的 shared 将会重载子应用的 shared
+  const { shared = SharedModule.getShared() } = props
+  SharedModule.overloadShared(shared)
+
   // 在 render 中创建 VueRouter，可以保证在卸载微应用时，移除 location 事件监听，防止事件污染
   router = new VueRouter({
     // 运行在主应用中时，添加路由命名空间 /vue
