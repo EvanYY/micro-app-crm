@@ -1,8 +1,11 @@
 <template>
   <div>
-    <div>
+    <div @click="getShared">
       i am crm app Main   FUCK!
     </div>
+    <h1 @click="dispatchs">
+      i am crm app Main   FUCK!
+    </h1>
     <div v-for="(item) in menus" :key="item.key">
       <router-link :to="item.route">
         {{item.title}}
@@ -13,7 +16,9 @@
 </template>
 
 <script>
-import _ from 'lodash'
+// import _ from 'lodash'
+// import actions from '@/shared/actions'
+import SharedModule from '@/shared'
 export default {
   name: 'AppCrmMain',
   beforeRouteEnter (to, from, next) {
@@ -42,17 +47,38 @@ export default {
           route: '/about',
           title: 'About'
         }
-      ]
+      ],
+      store: null
     }
   },
   methods: {
     test () {
       return false
+    },
+    getShared () {
+      console.log(this.store.getState())
+    },
+    dispatchs () {
+      const { common } = this.store.getState()
+      this.store.dispatch({ type: 'SET_STATUS', payload: !common.status })
+      this.store.dispatch({
+        type: 'DECREMENT',
+        text: 'Use Redux'
+      })
+      this.getShared()
     }
   },
   created () {},
   mounted () {
-    console.log('app   children crm', _.isFunction(this.test))
+    // console.log('app   children crm', _.isFunction(this.test))
+    // setTimeout(function () {
+    //   actions.setGlobalState({ token: 1 })
+    // }, 2000)
+    // actions.onGlobalStateChange((state, preState) => {
+    //   console.log('%c  app   children crm', state, 'color:red')
+    // })
+    this.store = SharedModule.getShared()
+    // 使用 shared 获取 token
   },
   beforeDestroy () {
     console.log('main beforeDestroy')

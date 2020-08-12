@@ -6,10 +6,27 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   components: {},
   data () {
     return {}
+  },
+  computed: {
+    ...mapState('MainCommon', {
+      a: state => state.common
+    })
+  },
+  mounted () {
+    console.log(this.a)
+  },
+  watch: {
+    a: {
+      handler: function (val) {
+        console.log('from crm change', val)
+      },
+      deep: true
+    }
   }
 }
 </script>

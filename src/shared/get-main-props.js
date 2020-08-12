@@ -1,19 +1,18 @@
-import { isFunction } from 'lodash'
+
 /**
  * 书写自己运行时所需要的mock 值
  *
  * @class Shared
  */
 class Shared {
-  getState () {
-    return {
-      common: {}
-    }
-  }
+ static ad = {
+   a: 1,
+   b: 2
+ }
 
-  subscript (cb) {
-    if (isFunction(cb)) cb()
-  }
+ balabalabala () {
+   return {}
+ }
 }
 class SharedModule {
   static shared = new Shared();

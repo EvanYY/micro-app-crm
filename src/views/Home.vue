@@ -7,13 +7,11 @@
 <script>
 // @ is an alias to /src
 import SharedModule from '@/shared'
-import actions from '@/shared/actions'
 
 export default {
   name: 'Home',
   mounted () {
     const shared = SharedModule.getShared()
-    console.log(actions.onGlobalStateChange())
 
     console.log('from crm home', shared)
   }
